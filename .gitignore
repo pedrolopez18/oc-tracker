@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.egg-info/
+dist/
+.pytest_cache/
+
+# Entorno
+.env
+*.env.local
+
+# Node
+node_modules/
+.next/
+out/
+.turbo/
+
+# Archivos de datos (nunca al repo)
+backend/uploads/*
+backend/outputs/*
+!backend/uploads/.gitkeep
+!backend/outputs/.gitkeep
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.log

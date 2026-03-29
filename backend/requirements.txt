@@ -1,0 +1,17 @@
+# ── Core (obligatorio) ────────────────────────────────────────────────────────
+fastapi==0.135.2
+uvicorn==0.42.0
+python-multipart==0.0.22
+pandas==3.0.1
+openpyxl==3.1.5
+pydantic==2.12.5
+python-dotenv==1.2.2
+aiofiles
+
+# ── Opcional: IA (si tienes ANTHROPIC_API_KEY) ────────────────────────────────
+# pip install anthropic
+anthropic
+
+# ── Opcional: base de datos (routers /orders, /suppliers, /ai) ───────────────
+# pip install sqlalchemy
+sqlalchemy==2.0.48
