@@ -294,16 +294,19 @@ async def upload_excel(file: UploadFile = File(...)):
     critical = int((pd.to_numeric(df[col_ret], errors="coerce").fillna(0) > 15).sum()) if col_ret else 0
     proveedores = sorted(df["Proveedor"].dropna().unique().tolist())
 
-    return {
-        "status": "ok",
-        "summary": {
-            "total":     len(df),
-            "delayed":   delayed,
-            "critical":  critical,
-            "suppliers": len(proveedores),
-        },
-        "proveedores": proveedores,
+    summary = {
+        "total":     len(df),
+        "delayed":   delayed,
+        "critical":  critical,
+        "suppliers": len(proveedores),
     }
+
+    # ── Guardar en store compartido (para que /chat lo use sin leer disco) ────
+    from app.store import data_store
+    data_store.set(df, summary, proveedores)
+    log.info("Store actualizado: %d filas, %d proveedores", len(df), len(proveedores))
+
+    return {"status": "ok", "summary": summary, "proveedores": proveedores}
 
 
 # ─────────────────────────────────────────
