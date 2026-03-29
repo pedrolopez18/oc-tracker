@@ -23,9 +23,10 @@ app.add_middleware(
 )
 
 # ── Routers principales (file-based, sin base de datos) ───────────────────────
-from app.routers import upload, chat
+from app.routers import upload, chat, report
 app.include_router(upload.router, prefix="/api/upload", tags=["upload"])
 app.include_router(chat.router,   prefix="/api/chat",   tags=["chat"])
+app.include_router(report.router, prefix="/api/report", tags=["report"])
 
 # ── Routers secundarios (requieren SQLAlchemy — carga condicional) ─────────────
 try:
