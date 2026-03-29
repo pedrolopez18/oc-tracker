@@ -12,7 +12,11 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://*.vercel.app"],
+    # Orígenes locales explícitos
+    allow_origins=["http://localhost:3000", "http://localhost:3001"],
+    # Vercel genera URLs del tipo https://proyecto-xxx.vercel.app
+    # allow_origins no soporta wildcards de subdominio — se usa regex
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
